@@ -1,8 +1,6 @@
 
-# Vahan Assignment - Assignment : Responsive Hotel Management Web App
-
+# Vahan Assignment - Assignment : 
  
-
 **This project is a rudimentary headless CMS with basic CRUD functionality, developed as part of the SDE intern assignment. It allows users to create different entities, perform CRUD operations on them, and stores data in a MySQL database.**
 
  
