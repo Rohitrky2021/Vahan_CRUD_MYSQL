@@ -71,12 +71,11 @@ function Persons() {
   // Rendering JSX for the component
   return (
     <div
-      style={{
-        backgroundColor: "#f0f0f0",
-        padding: "10px",
-        borderRadius: "10px",
-        // marginTop: "90px",
-      }}
+    style={{
+      backgroundColor: "rgb(206, 206, 206)",
+      padding: "150px",
+      borderRadius: "10px",
+    }}
     >
       {/* Heading for the form */}
       <h1

@@ -7,7 +7,7 @@ function P_List({ persons, onUpdatePerson, onDeletePerson }) {
       {/* Row for alignment */}
       <div className="row justify-content-center mt-4">
         {/* Column for layout */}
-        <div className="col-md-6">
+        <div className="col-lg-8 col-md-10">
           {/* Unordered list for displaying persons */}
           <ul className="list-group">
             {/* Mapping through the list of persons */}
@@ -17,8 +17,18 @@ function P_List({ persons, onUpdatePerson, onDeletePerson }) {
                 className="list-group-item d-flex justify-content-between align-items-center"
               >
                 {/* Displaying person details */}
-                {person.name} - {person.email} - {person.mobileNumber} -{" "}
-                {person.dateOfBirth}
+                <div>
+                  <strong>
+                    {person.name.length > 10
+                      ? person.name.substring(0, 10) + "..."
+                      : person.name}
+                  </strong>{" "}
+                  -{" "}
+                  {person.email.length > 10
+                    ? person.email.substring(0, 10) + "..."
+                    : person.email}{" "}
+                  - {person.mobileNumber} - {person.dateOfBirth}
+                </div>
                 {/* Buttons for deleting and updating a person */}
                 <div>
                   {/* Delete button */}
