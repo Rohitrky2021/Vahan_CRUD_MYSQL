@@ -1,16 +1,21 @@
+/* eslint-disable react/jsx-pascal-case */ // Disabling Pascal case check for JSX elements
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PersonForm from "./PersonForm";
-import PersonList from "./PersonList";
+import P_FORM from "./P_FORM"; // Importing the form component
+import P_List from "./P_List"; // Importing the list component
 
 function Persons() {
+  // State variables for storing persons and error message
   const [persons, setPersons] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Fetching data from the server on component mount
   useEffect(() => {
     fetchData();
   }, []);
 
+  // Function to fetch data from the server
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:3000/api/persons");
@@ -20,6 +25,7 @@ function Persons() {
     }
   };
 
+  // Function to handle addition of a new person
   const handleAddPerson = async (formData) => {
     try {
       await axios.post("http://localhost:3000/api/persons", formData);
@@ -29,7 +35,9 @@ function Persons() {
     }
   };
 
+  // Function to handle updating an existing person
   const handleUpdatePerson = async (id, newData) => {
+    // Validation for required fields
     if (
       !newData.name ||
       !newData.email ||
@@ -50,6 +58,7 @@ function Persons() {
     }
   };
 
+  // Function to handle deletion of a person
   const handleDeletePerson = async (id) => {
     try {
       await axios.delete(`http://localhost:3000/api/persons/${id}`);
@@ -59,8 +68,17 @@ function Persons() {
     }
   };
 
+  // Rendering JSX for the component
   return (
-    <div style={{ backgroundColor: "#f0f0f0", padding: "20px", borderRadius: "10px", marginTop: "20px" }}>
+    <div
+      style={{
+        backgroundColor: "#f0f0f0",
+        padding: "10px",
+        borderRadius: "10px",
+        // marginTop: "90px",
+      }}
+    >
+      {/* Heading for the form */}
       <h1
         className="text-center fw-bold mt-5 mb-4"
         style={{
@@ -69,19 +87,31 @@ function Persons() {
           textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
         }}
       >
-        Persons
+        Form For Persons
       </h1>
+
+      {/* Error message display */}
       {errorMessage && (
         <div
           className="alert alert-danger text-center"
           role="alert"
-          style={{ backgroundColor: "#f8d7da", color: "#721c24", borderRadius: "5px", padding: "10px", marginBottom: "20px" }}
+          style={{
+            backgroundColor: "#f8d7da",
+            color: "#721c24",
+            borderRadius: "5px",
+            padding: "10px",
+            marginBottom: "20px",
+          }}
         >
           {errorMessage}
         </div>
       )}
-      <PersonForm onAddPerson={handleAddPerson} />
-      <PersonList
+
+      {/* Form component for adding new persons */}
+      <P_FORM onAddPerson={handleAddPerson} />
+
+      {/* List component for displaying existing persons */}
+      <P_List
         persons={persons}
         onUpdatePerson={handleUpdatePerson}
         onDeletePerson={handleDeletePerson}
@@ -108,6 +138,6 @@ function Persons() {
       />
     </div>
   );
-}  
+}
 
 export default Persons;
